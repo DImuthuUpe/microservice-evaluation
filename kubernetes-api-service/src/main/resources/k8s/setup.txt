@@ -1,0 +1,30 @@
+Kuberenetes setup included 3 virtual machines with one master and two nodes.
+Kubernetes 1.8 was installed in the cluster using kubeadm.
+
+https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
+https://blog.alexellis.io/kubernetes-in-10-minutes/
+
+Installed flannel network as the overlay network inside the pods of Kubernetes cluster
+
+There was a issue in flannel network of not being able to ping to nodes through flannel bridge. It was fixed
+by running
+
+sudo iptables -P FORWARD ACCEPT
+
+on each node.
+https://github.com/kubernetes/kubernetes/issues/51881
+
+Once the cluster is setup, run kubectl create -f api-service.yml to create api-service pods and load balanced
+endpoint for created api-serivices
+
+To check whether everything works as expected run
+kubectl get pods
+kubectl get svc
+
+Send a post request to http://minion-ip:30080/experiment with payload
+
+{"experimentId":"E001","projectId":"P001","gatewayId":"G001"}
+
+and you should be able to see a response like
+
+Experiment E001 was accepted by api-service-84648555c6-b2xss
