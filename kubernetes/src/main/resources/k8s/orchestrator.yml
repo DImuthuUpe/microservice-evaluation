@@ -1,0 +1,46 @@
+apiVersion: apps/v1beta2 # for versions before 1.7.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: orchestrator
+  labels:
+    app: orchestrator
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: orchestrator
+  template:
+    metadata:
+      labels:
+        app: orchestrator
+    spec:
+      containers:
+      - name: elector
+        image: gcr.io/google_containers/leader-elector:0.4
+        imagePullPolicy: IfNotPresent
+        args:
+          - --election=monolith-jobs
+          - --http=localhost:4040
+        ports:
+          - containerPort: 4040
+            protocol: TCP
+      - name: orchestrator
+        image: dimuthuupe/orchestrator:v1
+        ports:
+        - containerPort: 8080
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: orchestrator
+  labels:
+    name: orchestrator
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      nodePort: 30081
+      name: http
+  selector:
+    app: orchestrator
