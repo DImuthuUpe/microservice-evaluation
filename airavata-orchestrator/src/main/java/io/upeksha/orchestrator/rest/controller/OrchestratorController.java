@@ -1,8 +1,5 @@
-package io.upeksha.rest.controller;
+package io.upeksha.orchestrator.rest.controller;
 
-import io.upeksha.rest.model.Experiment;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,12 +15,7 @@ import java.net.UnknownHostException;
  */
 
 @RestController
-public class APIController {
-
-    @RequestMapping(method = RequestMethod.POST, value = "/experiment", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String submitExperiment(@RequestBody Experiment experiment) throws UnknownHostException {
-        return "Experiment " + experiment.getExperimentId() + " was accepted by " + InetAddress.getLocalHost().getHostName();
-    }
+public class OrchestratorController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/exit")
     public String exit() throws UnknownHostException {

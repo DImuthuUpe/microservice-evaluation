@@ -1,4 +1,4 @@
-package io.upeksha.rest.model;
+package io.upeksha.orchestrator.rest.model;
 
 import java.util.List;
 

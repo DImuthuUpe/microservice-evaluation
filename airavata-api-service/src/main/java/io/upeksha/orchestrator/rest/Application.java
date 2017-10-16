@@ -1,4 +1,4 @@
-package io.upeksha.rest;
+package io.upeksha.orchestrator.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

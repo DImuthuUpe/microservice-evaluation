@@ -33,6 +33,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>3.0.5</version>
+        </dependency>
     </dependencies>
 
 
@@ -64,7 +74,7 @@
                         <artifactId>docker-maven-plugin</artifactId>
                         <version>1.0.0</version>
                         <configuration>
-                            <imageName>${docker.image.prefix}/api-server</imageName>
+                            <imageName>${docker.image.prefix}/orchestrator:1.0</imageName>
                             <dockerDirectory>src/main/resources/docker</dockerDirectory>
                             <resources>
                                 <resource>

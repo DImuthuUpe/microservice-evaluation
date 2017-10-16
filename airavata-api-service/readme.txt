@@ -6,6 +6,6 @@ Request method : POST
 Sample JSON :
 {"experimentId":"E001","projectId":"P001","gatewayId":"G001"}
 
-2. /kill
+2. /exit
 Task : Kills the container that holds this application
 Request methos : GET
